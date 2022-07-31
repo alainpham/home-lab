@@ -1,0 +1,9 @@
+---
+- name: docker config
+  hosts:
+    - selected
+  tasks:
+    - name: install
+      include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: server-configure-docker

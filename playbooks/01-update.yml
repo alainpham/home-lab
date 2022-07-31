@@ -1,0 +1,9 @@
+---
+- name: update
+  hosts:
+    - selected
+  tasks:
+    - name: update
+      include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: server-update

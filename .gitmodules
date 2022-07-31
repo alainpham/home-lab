@@ -1,0 +1,4 @@
+[submodule "cloud-native-appdev-lab-role"]
+	path = cloud-native-appdev-lab-role
+	url = git@github.com:alainpham/cloud-native-appdev-lab-role.git
+	branch = master

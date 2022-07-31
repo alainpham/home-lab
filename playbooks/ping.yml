@@ -1,0 +1,7 @@
+---
+- name: Ping components
+  hosts:
+    - selected
+  tasks:
+  - name: Ping
+    ping:

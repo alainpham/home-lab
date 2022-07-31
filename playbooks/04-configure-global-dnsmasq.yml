@@ -1,0 +1,9 @@
+---
+- name: dns server configuration
+  hosts:
+    - dnsservers
+  tasks:
+    - name: install
+      include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: server-global-dnsmasq
