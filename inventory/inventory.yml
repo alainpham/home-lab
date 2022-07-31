@@ -35,7 +35,6 @@ arm:
       ansible_python_interpreter: /usr/bin/python3
       arch: linux-arm-v7
     bbee.lan:
-      ansible_host: 192.168.8.153
       ansible_connection: ssh
       ansible_user: apham
       ansible_python_interpreter: /usr/bin/python3

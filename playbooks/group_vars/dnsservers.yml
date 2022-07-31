@@ -1,0 +1,16 @@
+dnsmasq:
+  address:
+    - hostname: bbee.lan
+      ip: 192.168.8.153
+    - hostname: work.lan
+      ip: 192.168.8.154
+    - hostname: asus.lan
+      ip: 192.168.8.108
+    - hostname: cipi.lan
+      ip: 192.168.8.200
+    - hostname: hpel.lan
+      ip: 192.168.8.164
+    - hostname: leol.lan
+      ip: 192.168.8.132
+    - hostname: hppa.lan
+      ip: 192.168.8.199
