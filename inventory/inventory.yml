@@ -46,6 +46,7 @@ selected:
   #   vms:
   hosts:
     cipi.lan:
+    hpel.lan:
 
 dnsservers:
   hosts:

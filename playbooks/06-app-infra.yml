@@ -1,0 +1,16 @@
+---
+- name: start-services
+  hosts:
+    - selected
+  vars:
+    appstate: started
+    recreate: false
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - traefik
+        - portainer
+      loop_control:
+        loop_var: rolesvar
