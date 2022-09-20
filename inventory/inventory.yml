@@ -46,6 +46,7 @@ selected:
   #   vms:
   hosts:
     cipi.lan:
+      ansible_host: 192.168.8.254
     hpel.lan:
 
 dnsservers:

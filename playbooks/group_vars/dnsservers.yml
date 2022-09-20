@@ -1,16 +1,67 @@
 dnsmasq:
+  dhcp-range: 192.168.8.8,192.168.8.253,255.255.255.0,12h
+  dhcp-option-router: option:router,192.168.8.1
+  dhcp-option-dns: option:dns-server,192.168.8.1
   address:
-    - hostname: bbee.lan
-      ip: 192.168.8.153
-    - hostname: work.lan
-      ip: 192.168.8.154
-    - hostname: asus.lan
-      ip: 192.168.8.108
+    # gateway
+    - hostname: gate.lan
+      ip: 192.168.8.1
+      mac: "E2:1F:03:47:E8:85"
+    
+    # dns dhcp
     - hostname: cipi.lan
-      ip: 192.168.8.200
+      ip: 192.168.8.254
+      mac: "B8:27:EB:3C:7E:AA"
+    
+    # 24/7 on servers
+    - hostname: awon.lan
+      ip: 192.168.8.100
+      mac: "00:00:00:00:00:01"
+    - hostname: bbee.lan
+      ip: 192.168.8.101
+      mac: "B8:27:EB:AE:B6:74"
+
+
+    # on demand servers
     - hostname: hpel.lan
-      ip: 192.168.8.164
+      ip: 192.168.8.110
+      mac: "EC:B1:D7:67:9E:25"
+    - hostname: fuja.lan
+      ip: 192.168.8.111
+      mac: "00:00:00:00:00:02"
+    - hostname: fujb.lan
+      ip: 192.168.8.112
+      mac: "00:00:00:00:00:03"
+
+    # workstations
+    - hostname: work.lan
+      ip: 192.168.8.150
+      mac: "B4:45:06:B8:76:37"
+    
+
+    # secondary workstations
     - hostname: leol.lan
-      ip: 192.168.8.132
+      ip: 192.168.8.170
+      mac: "54:EE:75:97:63:1A"
+
+    # secondary on demand servers
+    - hostname: asus.lan
+      ip: 192.168.8.190
+      mac: "74:D0:2B:75:63:DE"
     - hostname: hppa.lan
-      ip: 192.168.8.199
+      ip: 192.168.8.191
+      mac: "D8:D3:85:39:4B:A7"
+
+    # appliances
+    - hostname: jb91.lan
+      ip: 192.168.8.20
+      mac: "2C:FD:B3:04:FC:25"
+    - hostname: sonm.lan
+      ip: 192.168.8.21
+      mac: "34:7E:5C:F8:20:B0"
+    - hostname: print.lan
+      ip: 192.168.8.22
+      mac: "30:CD:A7:3B:2E:0B"
+    - hostname: wext.lan
+      ip: 192.168.8.23
+      mac: "00:31:92:08:fb:3d"
