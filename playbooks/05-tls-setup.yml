@@ -1,7 +1,7 @@
 ---
 - name: tls root ca copy
   hosts:
-    - selected
+    - mvp
   tasks:
     - name: install
       include_role:
@@ -10,7 +10,7 @@
 
 - name: tls create
   hosts:
-    - hpel.lan
+    - mvp
   tasks:
     - name: install
       include_role:

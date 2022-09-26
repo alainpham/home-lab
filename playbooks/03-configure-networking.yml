@@ -1,0 +1,9 @@
+---
+- name: network config
+  hosts:
+    - selected
+  tasks:
+    - name: network config
+      include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: server-configure-networking

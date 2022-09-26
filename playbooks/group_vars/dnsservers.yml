@@ -16,7 +16,7 @@ dnsmasq:
     # 24/7 on servers
     - hostname: awon.lan
       ip: 192.168.8.100
-      mac: "00:00:00:00:00:01"
+      mac: "9c:8e:99:e6:f3:3b"
     - hostname: bbee.lan
       ip: 192.168.8.101
       mac: "B8:27:EB:AE:B6:74"
@@ -65,3 +65,6 @@ dnsmasq:
     - hostname: wext.lan
       ip: 192.168.8.23
       mac: "00:31:92:08:fb:3d"
+    - hostname: satv.lan
+      ip: 192.168.8.24
+      mac: "70:b1:3d:ec:97:6f"

@@ -1,10 +1,10 @@
 ---
-- name: start-services
+- name: mvp
   hosts:
-    - selected
+    - mvp
   vars:
     appstate: started
-    recreate: false
+    recreate: true
   tasks:
     - include_role:
         name: cloud-native-appdev-lab-role
@@ -12,5 +12,35 @@
       loop:
         - traefik
         - portainer
+      loop_control:
+        loop_var: rolesvar
+
+- name: awon
+  hosts:
+    - awon.lan
+  vars:
+    appstate: started
+    recreate: true
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - registry
+        - regui
+        - minio
+        - keycloak
+        - grafana
+        - prometheus
+        - loki
+      loop_control:
+        loop_var: rolesvar
+    - include_role:
+        name: home-svc-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - plex
+        - teddycast
+        - rentman
       loop_control:
         loop_var: rolesvar

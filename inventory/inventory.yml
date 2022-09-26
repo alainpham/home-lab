@@ -26,29 +26,52 @@ x86:
       ansible_user: apham
       ansible_python_interpreter: /usr/bin/python3
       arch: linux-amd64
+    awon.lan:
+      ansible_connection: ssh
+      ansible_user: apham
+      ansible_python_interpreter: /usr/bin/python3
+      arch: linux-amd64
+    fuja.lan:
+      ansible_connection: ssh
+      ansible_user: apham
+      ansible_python_interpreter: /usr/bin/python3
+      arch: linux-amd64
+    fujb.lan:
+      ansible_connection: ssh
+      ansible_user: apham
+      ansible_python_interpreter: /usr/bin/python3
+      arch: linux-amd64
 arm:
   hosts:
     cipi.lan:
-      ansible_host: 192.168.8.200
+      ansible_host: 192.168.8.254
       ansible_connection: ssh
       ansible_user: apham
       ansible_python_interpreter: /usr/bin/python3
       arch: linux-arm-v7
+      globaldnsserver: true
     bbee.lan:
       ansible_connection: ssh
       ansible_user: apham
       ansible_python_interpreter: /usr/bin/python3
       arch: linux-arm-v7
-    
+
+dnsservers:
+  hosts:
+    cipi.lan:
+
+mvp:
+  hosts: 
+    cipi.lan:
+    bbee.lan:
+    awon.lan:
+
+
 selected:
   # children:
   #   x86:
   #   vms:
   hosts:
-    cipi.lan:
-      ansible_host: 192.168.8.254
-    hpel.lan:
+    awon.lan:
 
-dnsservers:
-  hosts:
-    cipi.lan:
+

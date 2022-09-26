@@ -1,0 +1,15 @@
+- name: awon
+  hosts:
+    - awon.lan
+  vars:
+    appstate: started
+    recreate: true
+  tasks:
+    - include_role:
+        name: home-svc-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - teddycast
+        - rentman
+      loop_control:
+        loop_var: rolesvar
