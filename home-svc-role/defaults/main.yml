@@ -5,7 +5,7 @@ appconfig:
     image: linuxserver/plex:1.28.2
   rentman:
     ip: 172.18.0.20
-    image: registry.awon.lan/rentman:1.0.1
+    image: registry.awon.lan/rentman:1.0.3
   teddycast:
     ip: 172.18.0.21
-    image: registry.awon.lan/teddycast:1.0.1
+    image: registry.awon.lan/teddycast:1.0.2

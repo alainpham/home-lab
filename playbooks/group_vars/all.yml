@@ -1,0 +1,36 @@
+---
+apps: 
+  - artifactId: rentman
+    groupId: com.itteddy
+    cleanStart: true
+    repo: git@github.com:itteddy/rentman.git
+    version: master
+    dockerfile: src/main/docker/Dockerfile.multiarch
+    artifact: target/quarkus-app
+    type: folder
+    buildVersion: "1.0.3"
+    nextVersion:
+    subfolder: 
+    mavenrepo: https://admin:password@reposilite.awon.lan/releases
+    arch:
+      - linux-amd64
+      - linux-arm-v7
+    registries: 
+      - registry.awon.lan
+  - artifactId: teddycast
+    groupId: com.itteddy
+    cleanStart: true
+    repo: git@github.com:itteddy/teddycast.git
+    version: master
+    dockerfile: src/main/docker/Dockerfile.multiarch
+    artifact: target/quarkus-app
+    type: folder
+    buildVersion: "1.0.2"
+    nextVersion:
+    subfolder: 
+    mavenrepo: https://admin:password@reposilite.awon.lan/releases
+    arch:
+      - linux-amd64
+      - linux-arm-v7
+    registries: 
+      - registry.awon.lan

@@ -33,6 +33,7 @@
         - grafana
         - prometheus
         - loki
+        - reposilite
       loop_control:
         loop_var: rolesvar
     - include_role:

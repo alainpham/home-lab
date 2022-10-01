@@ -1,15 +1,168 @@
+---
+- name: build java bytecode on x86 machines
+  hosts:
+    - awon.lan
+  serial: 1
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: cicd-java-build
+
+- name: build & push containers to registry
+  hosts:
+    - awon.lan
+    - bbee.lan
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: cicd-container-push
+
+- name: push multi arch manifest
+  hosts:
+    - awon.lan
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: cicd-container-manifest
+
 - name: awon
   hosts:
     - awon.lan
   vars:
     appstate: started
     recreate: true
+    purge: false
   tasks:
     - include_role:
         name: home-svc-role
         tasks_from: app-{{ rolesvar }}
       loop:
-        - teddycast
         - rentman
       loop_control:
         loop_var: rolesvar
+
+
+# - name: build java bytecode on x86 machines
+#   hosts:
+#     - awon.lan
+#   serial: 1
+#   tasks:
+#     - include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: cicd-java-build
+
+# - name: build & push containers to registry
+#   hosts:
+#     - awon.lan
+#     - bbee.lan
+#   tasks:
+#     - include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: cicd-container-push
+
+# - name: push multi arch manifest
+#   hosts:
+#     - awon.lan
+#   tasks:
+#     - include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: cicd-container-manifest
+
+# - name: push multi arch manifest
+#   hosts:
+#     - awon.lan
+#   tasks:
+#     - include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: cicd-container-manifest
+
+
+
+
+# - name: print repos
+#   hosts: 
+#     - awon.lan
+#   tasks:
+    # - debug:
+    #     msg: "{{ item.0.artifactId }}"
+    #   loop: "{{ apps | subelements('registries') |  }}"
+    # - name: with_nested -> loop
+    #   ansible.builtin.debug:
+    #     msg: " docker manifest create {{ item.1.1 }}/{{ item.0.0.artifactId }}:{{ item.0.0.buildVersion }} -a {{ item.1.1 }}/{{ item.0.0.artifactId }}:{{ item.0.0.buildVersion }}-{{ item.0.1 }}"
+    #   loop: "{{ ( apps | subelements('arch') ) | product(apps | subelements('registries')) | list   }}"
+    # - name: with_nested -> loop
+    #   ansible.builtin.debug:
+    #     msg: "docker manifest push {{ item.1 }}/{{ item.0.artifactId }}:{{ item.0.buildVersion }}"
+    #   loop: "{{  apps | subelements('registries')   }}"
+
+
+# - name: build java bytecode on x86 machines
+#   hosts:
+#     # - awon.lan
+#     - bbee.lan
+#   # serial: 1
+#   tasks:
+#     # - include_role:
+#     #     name: cloud-native-appdev-lab-role
+#     #     tasks_from: cicd-java-build
+#     - include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: cicd-container-push
+# - name: awon
+#   hosts:
+#     - awon.lan
+#   vars:
+#     apps: 
+#       - artifactId: rentman
+#         groupId: com.itteddy
+#         cleanStart: true
+#         repo: git@github.com:itteddy/rentman.git
+#         version: master
+#         dockerfile: src/main/docker/Dockerfile.multiarch
+#         artifact: target/quarkus-app
+#         type: folder
+#         buildVersion: "1.0.1"
+#         nextVersion:
+#         subfolder: 
+#         mavenrepo: https://admin:password@reposilite.awon.lan/releases
+#         registries: 
+#           - registry.awon.lan
+#   tasks:
+    # - name: package folder
+    #   when: item.type == 'folder'
+    #   community.general.archive:
+    #     path: /home/{{ ansible_user }}/sources/{{item.groupId}}/{{item.artifactId}}/{{item.subfolder}}/{{ item.artifact }}
+    #     dest: /home/{{ ansible_user }}/sources/{{item.groupId}}/{{item.artifactId}}/{{item.subfolder}}/target/{{item.artifactId}}-{{ item.buildVersion }}.tar.gz
+    #   with_items: "{{apps}}"
+
+    # - name: maven deploy on central repo
+    #   when: item.type == 'folder'
+    #   shell: |
+    #     mvn deploy:deploy-file \
+    #       -DgroupId={{ item.groupId }} \
+    #       -DartifactId={{ item.artifactId }} \
+    #       -Dversion={{ item.buildVersion }} \
+    #       -Dpackaging=tar.gz \
+    #       -Durl={{ item.mavenrepo }} \
+    #       -Dfile=target/{{item.artifactId}}-{{ item.buildVersion }}.tar.gz
+    #   args:
+    #     chdir: /home/{{ ansible_user }}/sources/{{item.groupId}}/{{item.artifactId}}/{{item.subfolder}}
+    #   with_items: "{{apps}}"
+    
+    # - name: Make sure target folder exists
+    #   file:
+    #     path: /home/{{ ansible_user }}/sources/{{item.groupId}}/{{item.artifactId}}/{{item.subfolder}}/target/
+    #     state: directory
+    #   with_items: "{{apps}}"
+      
+    # - name: Download artifact
+    #   when: item.type == 'folder'
+    #   ansible.builtin.get_url:
+    #     url: "{{ item.mavenrepo }}/{{ item.groupId | replace('.','/') }}/{{ item.artifactId }}/{{ item.buildVersion }}/{{ item.artifactId }}-{{ item.buildVersion }}.tar.gz"
+    #     dest: "/home/{{ ansible_user }}/sources/{{item.groupId}}/{{item.artifactId}}/{{item.subfolder}}/target/{{ item.artifactId }}-{{ item.buildVersion }}.tar.gz"
+    #   with_items: "{{apps}}"
+
+
+# mvn deploy:deploy-file -DgroupId=Home -DartifactId=RE -Dversion=1.0.0 -Dpackaging=tar.gz -Durl=https://admin:password@reposilite.awon.lan/releases -Dfile=rentman.tar.gz
+
+# mvn org.apache.maven.plugins:maven-dependency-plugin:3.3.0:get -DremoteRepositories=https://reposilite.awon.lan/releases -Dartifact=com.itteddy:rentman:1.0.1
