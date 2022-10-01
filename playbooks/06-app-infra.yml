@@ -12,6 +12,7 @@
       loop:
         - traefik
         - portainer
+        - cadvisor
       loop_control:
         loop_var: rolesvar
 
@@ -21,6 +22,7 @@
   vars:
     appstate: started
     recreate: true
+    purge: false
   tasks:
     - include_role:
         name: cloud-native-appdev-lab-role
@@ -34,6 +36,7 @@
         - prometheus
         - loki
         - reposilite
+        - artemis
       loop_control:
         loop_var: rolesvar
     - include_role:

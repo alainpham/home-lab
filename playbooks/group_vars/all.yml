@@ -34,3 +34,31 @@ apps:
       - linux-arm-v7
     registries: 
       - registry.awon.lan
+
+prom:
+  node:
+    - "cipi.lan:9100"
+    - "bbee.lan:9100"
+    - "awon.lan:9100"
+  cadvisor:
+    - "cadvisor.cipi.lan"
+    - "cadvisor.bbee.lan"
+    - "cadvisor.awon.lan"
+  traefik:
+    - "cipi.lan:8080"
+    - "bbee.lan:8080"
+    - "awon.lan:8080"
+  o11y:
+    - "grafana.awon.lan"
+  artemis:
+    - artemis-console.awon.lan
+  camelquarkus:
+    - rentman.awon.lan
+    - teddycast.awon.lan
+  camelspring:
+    - spring.awon.lan
+  kafka:
+    - kafka-metrics.awon.lan
+    - kafkaexporter.awon.lan
+  zookeeper:
+    - zookeeper-metrics.awon.lan

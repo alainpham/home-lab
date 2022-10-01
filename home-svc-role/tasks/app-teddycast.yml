@@ -6,7 +6,7 @@
 - name: "Manage {{appname}} container state - {{appstate}} - {{appconfig[appname].ip}}"
   docker_container:
     name: "{{appname}}"
-    image: "{{appconfig[appname].image}}-{{arch}}"
+    image: "{{appconfig[appname].image}}"
     state: "{{appstate}}"
     recreate: "{{recreate}}"
     restart_policy: unless-stopped
