@@ -28,10 +28,10 @@ dnsmasq:
       mac: "EC:B1:D7:67:9E:25"
     - hostname: fuja.lan
       ip: 192.168.8.111
-      mac: "00:00:00:00:00:02"
+      mac: "90:1b:0e:19:3b:1c"
     - hostname: fujb.lan
       ip: 192.168.8.112
-      mac: "00:00:00:00:00:03"
+      mac: "90:1b:0e:59:9c:b7"
 
     # workstations
     - hostname: work.lan

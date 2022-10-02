@@ -1,14 +1,34 @@
-- name: mvp
+# - name: kube
+#   hosts:
+#     - kube
+#   vars:
+#     appstate: started
+#     recreate: true
+#   tasks:
+#     - include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: app-{{ rolesvar }}
+#       loop:
+#         - traefik
+#         - portainer
+#         - cadvisor
+#       loop_control:
+#         loop_var: rolesvar
+
+- name: tls root ca copy
   hosts:
-    - mvp
-  vars:
-    appstate: started
-    recreate: true
+    - kube
   tasks:
-    - include_role:
+    - name: install
+      include_role:
         name: cloud-native-appdev-lab-role
-        tasks_from: app-{{ rolesvar }}
-      loop:
-        - cadvisor
-      loop_control:
-        loop_var: rolesvar
+        tasks_from: tls-distribute-ca-from-local
+
+- name: tls create
+  hosts:
+    - kube
+  tasks:
+    - name: install
+      include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: tls-setup

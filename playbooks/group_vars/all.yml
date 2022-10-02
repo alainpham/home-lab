@@ -40,14 +40,20 @@ prom:
     - "cipi.lan:9100"
     - "bbee.lan:9100"
     - "awon.lan:9100"
+    - "fuja.lan:9100"
+    - "fujb.lan:9100"
   cadvisor:
     - "cadvisor.cipi.lan"
     - "cadvisor.bbee.lan"
     - "cadvisor.awon.lan"
+    - "cadvisor.fuja.lan"
+    - "cadvisor.fujb.lan"
   traefik:
     - "cipi.lan:8080"
     - "bbee.lan:8080"
     - "awon.lan:8080"
+    - "fuja.lan:8080"
+    - "fujb.lan:8080"
   o11y:
     - "grafana.awon.lan"
   artemis:

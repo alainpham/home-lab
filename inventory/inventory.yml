@@ -65,7 +65,13 @@ mvp:
     cipi.lan:
     bbee.lan:
     awon.lan:
+    fuja.lan:
+    fujb.lan:
 
+kube:
+  hosts:
+    fuja.lan:
+    fujb.lan:
 
 selected:
   # children:
