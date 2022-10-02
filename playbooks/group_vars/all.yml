@@ -42,18 +42,25 @@ prom:
     - "awon.lan:9100"
     - "fuja.lan:9100"
     - "fujb.lan:9100"
+    - "hpel.lan:9100"
+    - "asus.lan:9100"
+
   cadvisor:
     - "cadvisor.cipi.lan"
     - "cadvisor.bbee.lan"
     - "cadvisor.awon.lan"
     - "cadvisor.fuja.lan"
     - "cadvisor.fujb.lan"
+    - "cadvisor.hpel.lan"
+    - "cadvisor.asus.lan"
   traefik:
     - "cipi.lan:8080"
     - "bbee.lan:8080"
     - "awon.lan:8080"
     - "fuja.lan:8080"
     - "fujb.lan:8080"
+    - "hpel.lan:8080"
+    - "asus.lan:8080"
   o11y:
     - "grafana.awon.lan"
   artemis:

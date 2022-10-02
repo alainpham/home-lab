@@ -1,6 +1,24 @@
-# - name: kube
+# - name: tls root ca copy
 #   hosts:
-#     - kube
+#     - asus.lan
+#   tasks:
+#     - name: install
+#       include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: tls-distribute-ca-from-local
+
+# - name: tls create
+#   hosts:
+#     - asus.lan
+#   tasks:
+#     - name: install
+#       include_role:
+#         name: cloud-native-appdev-lab-role
+#         tasks_from: tls-setup
+
+# - name: asus.lan
+#   hosts:
+#     - asus.lan
 #   vars:
 #     appstate: started
 #     recreate: true
@@ -15,20 +33,18 @@
 #       loop_control:
 #         loop_var: rolesvar
 
-- name: tls root ca copy
+- name: awon
   hosts:
-    - kube
+    - awon.lan
+  vars:
+    appstate: started
+    recreate: true
+    purge: false
   tasks:
-    - name: install
-      include_role:
+    - include_role:
         name: cloud-native-appdev-lab-role
-        tasks_from: tls-distribute-ca-from-local
-
-- name: tls create
-  hosts:
-    - kube
-  tasks:
-    - name: install
-      include_role:
-        name: cloud-native-appdev-lab-role
-        tasks_from: tls-setup
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - prometheus
+      loop_control:
+        loop_var: rolesvar
