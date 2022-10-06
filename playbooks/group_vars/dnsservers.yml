@@ -51,6 +51,10 @@ dnsmasq:
     - hostname: hppa.lan
       ip: 192.168.8.191
       mac: "D8:D3:85:39:4B:A7"
+    - hostname: olma.lan
+      ip: 192.168.8.193
+      mac: "00:1b:63:b6:cc:11"
+    
 
     # appliances
     - hostname: jb91.lan
