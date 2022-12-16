@@ -1,6 +1,38 @@
 ---
+appconfig:
+  grafana: 
+    ip: 172.18.0.71
+    image: grafana/grafana:9.3.1
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 1000
+    exec_as_group: 1000
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+
+    prom_url: http://prometheus:9090
+
+  plex: 
+    image: linuxserver/plex:1.30.0
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 1000
+    exec_as_group: 1000
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+    
+
 apps: 
-  - artifactId: rentman
+  rentman:
+    artifactId: rentman
     groupId: com.itteddy
     cleanStart: true
     repo: git@github.com:itteddy/rentman.git
@@ -17,7 +49,8 @@ apps:
       - linux-arm-v7
     registries: 
       - registry.awon.lan
-  - artifactId: teddycast
+  teddycast:
+    artifactId: teddycast
     groupId: com.itteddy
     cleanStart: true
     repo: git@github.com:itteddy/teddycast.git
@@ -25,7 +58,7 @@ apps:
     dockerfile: src/main/docker/Dockerfile.multiarch
     artifact: target/quarkus-app
     type: folder
-    buildVersion: "1.0.2"
+    buildVersion: "1.0.3"
     nextVersion:
     subfolder: 
     mavenrepo: https://admin:password@reposilite.awon.lan/releases

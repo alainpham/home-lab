@@ -1,0 +1,51 @@
+---
+- name: mvp
+  hosts:
+    - mvp
+  vars:
+    global_recreate: true
+    global_appstate: started
+    global_purge: true
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - traefik
+        - portainer
+        - cadvisor
+      loop_control:
+        loop_var: rolesvar
+
+- name: awon
+  hosts:
+    - awon.lan
+  vars:
+    global_recreate: true
+    global_appstate: started
+    global_purge: true
+  tasks:
+    - include_role:
+        name: cloud-native-appdev-lab-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - registry
+        - regui
+        - minio
+        - keycloak
+        - grafana
+        - prometheus
+        - loki
+        - reposilite
+        - artemis
+      loop_control:
+        loop_var: rolesvar
+    - include_role:
+        name: home-svc-role
+        tasks_from: app-{{ rolesvar }}
+      loop:
+        - plex
+        - teddycast
+        - rentman
+      loop_control:
+        loop_var: rolesvar

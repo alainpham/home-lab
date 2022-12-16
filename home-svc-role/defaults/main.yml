@@ -1,11 +1,61 @@
 ---
+docker:
+  pullregistry: registry.awon.lan
+  registries:
+    - registry.work.lan
+    - registry.awon.lan
+  dns: 
+    - 172.17.0.1
+
+config_folder_root: /home/{{ ansible_user }}/apps
+data_folder_root: /home/{{ ansible_user }}/apps
+
+config_folder_default: "{{ config_folder_root }}/{{ appname }}/config"
+data_folder_default: "{{ data_folder_root }}/{{ appname }}/data"
+
+global_appstate: started
+global_recreate: true
+global_purge: false
 
 appconfig:
   plex: 
-    image: linuxserver/plex:1.28.2
+    image: linuxserver/plex:1.30.0
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 1000
+    exec_as_group: 1000
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+    
   rentman:
-    ip: 172.18.0.20
+    ip: 172.18.1.20
     image: registry.awon.lan/rentman:1.0.3
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 1000
+    exec_as_group: 1000
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+
+
   teddycast:
-    ip: 172.18.0.21
-    image: registry.awon.lan/teddycast:1.0.2
+    ip: 172.18.1.21
+    image: registry.awon.lan/teddycast:1.0.3
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 1000
+    exec_as_group: 1000
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
