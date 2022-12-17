@@ -1,5 +1,55 @@
 ---
 appconfig:
+
+
+  traefik: 
+    ip: 172.18.0.43
+    image: docker.io/traefik:2.9.5
+
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 0
+    exec_as_group: 0
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+      - "80:80"
+      - "443:443"
+      # - "8080:8080"
+
+  portainer: 
+    ip: 172.18.0.40
+    image: portainer/portainer-ce:2.16.2
+
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 0
+    exec_as_group: 0
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+
+
+  cadvisor: 
+    ip: 172.18.0.77
+    image: gcr.io/cadvisor/cadvisor:v0.46.0
+    
+    declare_hostname: false
+    appstate: "{{ global_appstate }}"
+    recreate: "{{ global_recreate }}"
+    purge: "{{ global_purge }}"
+    exec_as_user: 0
+    exec_as_group: 0
+    config_folder: "{{ config_folder_default }}"
+    data_folder: "{{ data_folder_default }}"
+    ports: 
+
+
   grafana: 
     ip: 172.18.0.71
     image: grafana/grafana:9.3.1
